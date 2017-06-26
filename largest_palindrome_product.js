@@ -7,51 +7,40 @@
  *  @return {Object} an object containing the two factors used to produce
  *                   the palindromeNumber and the palindromeNumber itself.
  */
- var hello = (function(){
+ var hello = (function(digits){
   var factor_0 = 0;
   var factor_1 = 0;
   var palindromeNumber = 0;
   // do your work here
 
+    for (var i = digits; i <= 99; i++) {
 
-    var findPalindromeProduct = function (){
-    for (var i = 10; i <= 99; i++) {
-      factor_0 = i;
-      for (var j = 10; j <= 99; j++){
-      factor_1 = j;
-      combo = factor_0 * factor_1;
-        if (checkIfPalindrome(combo) === true){
+      for (var j = 0; j <= 99; j++){
+      let combo = i * j;
+      let stringPal = combo.toString();
+      let revPal =stringPal.split("").reverse().join("");
+
+        if (revPal === stringPal){
+          factor_0 = i;
+          factor_1 = j;
+          palindromeNumber = combo;
+
+
         }
-      }
-    }
-          return palindromeNumber;
+     }
+  }
 
-    };
-
-    function checkIfPalindrome(num){
-      let stringPal = num.toString();
-      let revPal =stringPal.split("");
-      revPal = revPal.reverse();
-      revPal =revPal.join("");
-
-      if (revPal === stringPal) {
-          palindromeNumber = revPal;
-          return true;
-      } else {
-        return false;
-      }
-
-    }
-
-return {
-    factor_0 : factor_0,
-    factor_1 : factor_1,
-    palindromeNumber : findPalindromeProduct,
+    return {
+        factor_0 : factor_0,
+        factor_1 : factor_1,
+        palindromeNumber : palindromeNumber,
   };
+
+
+
 
 })();
 
+console.log(hello);
 
-console.log(hello.palindromeNumber());
-console.log(hello.factor_0);
   module.exports = hello;
